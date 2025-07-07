@@ -1,0 +1,33 @@
+[global]
+# Streamlit configuration for production deployment
+
+[server]
+port = 8501
+address = "0.0.0.0"
+baseUrlPath = ""
+enableCORS = false
+enableXsrfProtection = true
+# Timeout configurations - optimized for no timeout
+maxUploadSize = 1000
+headless = true
+runOnSave = false
+allowRunOnSave = false
+
+# Session configurations
+enableStaticServing = false
+fileWatcherType = "none"
+
+[browser]
+serverAddress = "localhost"
+gatherUsageStats = false
+serverPort = 8501
+
+[theme]
+primaryColor = "#667eea"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f0f2f6"
+textColor = "#262730"
+
+[logger]
+level = "info"
+messageFormat = "%(asctime)s %(message)s"
