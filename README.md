@@ -260,7 +260,8 @@ Pinthenews/
 │
 └── 🐳 Deployment Options
     ├── Dockerfile                 # Container setup
-    ├── docker-compose.yml         # Multi-service deployment  
+    ├── docker-compose.yml         # Multi-service deployment
+    ├── service-deployed.yaml      # Service deployment configuration
     └── streamlit_config.toml       # App configuration
 ```
 
