@@ -4,12 +4,31 @@
 
 ```
 Pinthenews/
-├── app.py                    # Main Streamlit application
-├── run.py                    # Application launcher with dependency checking
-├── start.sh                  # Quick start script (production-ready)
-├── requirements.txt          # Python dependencies
-├── streamlit_config.toml     # Streamlit configuration (no-timeout)
-└── .env                      # Environment variables (create manually)
+  ├── .venv/                      # Virtual environment (created during setup)
+  ├── .env                        # API keys (create manually)
+  ├── agents/                     # AI location extraction agents
+  │   ├── __init__.py            # Package initialization
+  │   └── location_agents.py     # CrewAI multi-agent system
+  ├── doc/                        # Documentation
+  │   ├── CODE_QUALITY_ASSESSMENT.md
+  │   ├── DEPLOYMENT.md
+  │   ├── DOCUMENTATION_ASSESSMENT.md
+  │   ├── EDGE_CASE_TESTING.md
+  │   ├── PROJECT_STRUCTURE.md
+  │   └── REPRODUCIBILITY_ASSESSMENT.md
+  ├── src/                        # Core application code
+  │   ├── app.py                 # Main Streamlit application
+  │   ├── mcp_integration.py     # MCP client integration
+  │   ├── run.py                 # Application launcher
+  │   └── setup_verification.py  # Environment validation script
+  ├── test/                       # Testing
+  │   └── test_suite.py          # Comprehensive test suite
+  ├── docker-compose.yml          # Docker Compose configuration
+  ├── Dockerfile                  # Docker container configuration
+  ├── requirements.txt            # Python dependencies
+  ├── runtime.txt                 # Python runtime specification
+  ├── start.sh                    # Quick start script
+  └── streamlit_config.toml       # Streamlit configuration
 ```
 
 ## 🤖 AI Components

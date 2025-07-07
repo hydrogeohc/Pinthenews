@@ -34,9 +34,13 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Keep-alive for no timeout
+# Enhanced keep-alive and connection settings for no timeout
 if 'keep_alive' not in st.session_state:
     st.session_state.keep_alive = True
+
+# Configure longer timeouts for better connectivity
+import socket
+socket.setdefaulttimeout(60)  # 60 second timeout for socket operations
 
 # ============================================================================
 # STYLING AND CSS
@@ -293,7 +297,7 @@ class NewsLocationChatbot:
                 'Upgrade-Insecure-Requests': '1'
             }
             
-            response = requests.get(url, headers=headers, timeout=15)
+            response = requests.get(url, headers=headers, timeout=60)
             response.raise_for_status()
             
             # Check content type
@@ -350,7 +354,15 @@ class NewsLocationChatbot:
             return clean_content[:5000]  # Increased limit to 5000 characters
             
         except requests.exceptions.Timeout:
-            return "Error: Request timed out. The website may be slow or unresponsive."
+            # Retry with longer timeout
+            try:
+                response = requests.get(url, headers=headers, timeout=120)
+                response.raise_for_status()
+                soup = BeautifulSoup(response.content, 'html.parser')
+                content = soup.get_text()
+                return content[:5000] if content else "Error: No content found after retry"
+            except:
+                return "Error: Request timed out even after retry. The website may be slow or unresponsive."
         except requests.exceptions.ConnectionError:
             return "Error: Could not connect to the website. Please check the URL and your internet connection."
         except requests.exceptions.HTTPError as e:
@@ -763,6 +775,7 @@ def generate_text_summary(text: str) -> str:
         response = client.messages.create(
             model="claude-3-sonnet-20240229",
             max_tokens=800,
+            timeout=120,  # 2 minute timeout
             messages=[
                 {
                     "role": "user",
@@ -916,6 +929,7 @@ def generate_contextual_response(question: str, locations: List[Dict]) -> str:
         response = client.messages.create(
             model="claude-3-sonnet-20240229",
             max_tokens=700,
+            timeout=120,  # 2 minute timeout
             system=system_prompt,
             messages=[
                 {
