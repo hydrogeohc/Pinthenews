@@ -4,24 +4,6 @@
 
 Transform news articles into interactive geographic insights! Pinthenews uses advanced AI to extract and visualize locations from news content, featuring real-time mapping and conversational analysis with enhanced connectivity and no timeout limits.
 
-## ⚡ Quick Start
-
-```bash
-# 1. Clone and setup
-git clone <repository-url> && cd Pinthenews
-python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
-
-# 2. Install dependencies  
-pip install -r requirements.txt
-
-# 3. Configure API key
-echo "ANTHROPIC_API_KEY=your_key_here" > .env
-
-# 4. Launch application
-./start.sh
-# Open: http://localhost:8501
-```
-
 ## 📋 Table of Contents
 
 ### 🚀 Getting Started
